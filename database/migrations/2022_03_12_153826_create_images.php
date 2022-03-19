@@ -16,16 +16,16 @@ class CreateImages extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('order_id');
 
-            $table->binary('sts_front');
-            $table->binary('sts_back');
-            $table->binary('ts_front');
-            $table->binary('ts_back');
-            $table->binary('ts_right');
-            $table->binary('ts_left');
-            $table->binary('vin_door');
-            $table->binary('vin_glass');
+            $table->string('sts_front');
+            $table->string('sts_back');
+            $table->string('ts_front');
+            $table->string('ts_back');
+            $table->string('ts_right');
+            $table->string('ts_left');
+            $table->string('vin_door');
+            $table->string('vin_glass');
 
             $table->timestamps();
         });

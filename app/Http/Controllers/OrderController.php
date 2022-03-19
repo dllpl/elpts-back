@@ -43,6 +43,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        header('Access-Control-Allow-Origin', '*');
+        header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
         $request->validate([
             'type_owner'=>'required'
@@ -93,14 +96,14 @@ class OrderController extends Controller
                 'pay_success'=>'required',
             ]);
 
-            $sts_front = $request->file('sts_front')->store('uploads','public');
-            $sts_back = $request->file('sts_back')->store('uploads','public');
-            $ts_front = $request->file('ts_front')->store('uploads','public');
-            $ts_back = $request->file('ts_back')->store('uploads','public');
-            $ts_right = $request->file('ts_right')->store('uploads','public');
-            $ts_left = $request->file('ts_left')->store('uploads','public');
-            $vin_door = $request->file('vin_door')->store('uploads','public');
-            $vin_glass = $request->file('vin_glass')->store('uploads','public');
+            $sts_front = $request->sts_front->store('uploads','public_html');
+            $sts_back = $request->sts_back->store('uploads','public_html');
+            $ts_front = $request->ts_front->store('uploads','public_html');
+            $ts_back = $request->ts_back->store('uploads','public_html');
+            $ts_right = $request->ts_right->store('uploads','public_html');
+            $ts_left = $request->ts_left->store('uploads','public_html');
+            $vin_door = $request->vin_door->store('uploads','public_html');
+            $vin_glass = $request->vin_glass->store('uploads','public_html');
 
             $order = Order::create([
                 'last_name'=>$request->last_name,
@@ -190,14 +193,15 @@ class OrderController extends Controller
                 'pay_success'=>'required',
             ]);
 
-            $sts_front = $request->file('sts_front')->store('uploads','public');
-            $sts_back = $request->file('sts_back')->store('uploads','public');
-            $ts_front = $request->file('ts_front')->store('uploads','public');
-            $ts_back = $request->file('ts_back')->store('uploads','public');
-            $ts_right = $request->file('ts_right')->store('uploads','public');
-            $ts_left = $request->file('ts_left')->store('uploads','public');
-            $vin_door = $request->file('vin_door')->store('uploads','public');
-            $vin_glass = $request->file('vin_glass')->store('uploads','public');
+            $sts_front = $request->sts_front->store('uploads','public');
+            $sts_back = $request->sts_back->store('uploads','public');
+            $ts_front = $request->ts_front->store('uploads','public');
+            $ts_back = $request->ts_back->store('uploads','public');
+            $ts_right = $request->ts_right->store('uploads','public');
+            $ts_left = $request->ts_left->store('uploads','public');
+            $vin_door = $request->vin_door->store('uploads','public');
+            $vin_glass = $request->vin_glass->store('uploads','public');
+
 
             $order = Order::create([
                 'org_name'=>$request->org_name,
