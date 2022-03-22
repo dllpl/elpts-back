@@ -11,8 +11,51 @@
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Юр лицо/физ
                     лицо</label>
                 <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value="{{$order->type_owner}}" disabled>
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value="{{$order->type_owner}}" disabled>
+                <div class="font-bold mt-5 mb-5" style="font-size: 28px">Изменить статус заявки</div>
+                <label for="countries" class="block mb-5 font-medium text-gray-900 dark:text-gray-400">
+                    Текущий статус заявки:&nbsp
+                    @switch($order->status)
+                        @case(0)
+                        <span class="p-2 rounded-full relative"
+                              style="background-color: yellow; font-weight: bold">В обработке</span>
+                        @break
+                        @case(1)
+                        <span class="p-2 rounded-full"
+                              style="background-color: green; font-weight: bold; color: white">Исполнен</span>
+                        @break
+                        @case(2)
+                        <span class="p-2 rounded-full"
+                              style="background-color: red; font-weight: bold; color: white">Отклонен</span>
+                        @break
+                    @endswitch
+                </label>
+                <form action="{{route('status_edit',$order->id)}}" method="POST">
+                    @csrf
+                    <select id="countries" name="status"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @switch($order->status)
+                            @case(0)
+                            <option value="1">Исполнен</option>
+                            <option value="2">Отклонен</option>
+                            @break
+                            @case(1)
+                            <option value="0">В обработке</option>
+                            <option value="2">Отклонен</option>
+                            @break
+                            @case(2)
+                            <option value="0">В обработке</option>
+                            <option value="1">Исполнен</option>
+                            @break
+                        @endswitch
+                    </select>
+                    <button type="submit"
+                            class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Сохранить
+                    </button>
+                </form>
+
             </div>
             @if($order->type_owner === 'Физическое лицо')
                 <div class="grid xl:grid-cols-3 xl:gap-4">
@@ -71,8 +114,8 @@
             <div class="mb-6">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Адрес</label>
                 <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value="{{$order->address}}" disabled>
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value="{{$order->address}}" disabled>
             </div>
             @if($order->type_owner === 'Физическое лицо')
                 <div class="font-bold mt-5 mb-5">Паспортные данные</div>
@@ -104,15 +147,15 @@
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Марка и
                     модификация</label>
                 <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value="{{$order->car_mark}}" disabled>
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value="{{$order->car_mark}}" disabled>
             </div>
             <div class="mb-6">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Коммерческое
                     наименование</label>
                 <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value="{{$order->commercial_name}}" disabled>
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value="{{$order->commercial_name}}" disabled>
             </div>
             <div class="grid xl:grid-cols-4 xl:gap-4">
                 <div class="mb-4">
@@ -250,7 +293,7 @@
                         class="flex absolute top-0 left-0 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                         data-carousel-prev>
             <span
-                class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                 <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor"
                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
                                                                                   stroke-linejoin="round"
@@ -263,7 +306,7 @@
                         class="flex absolute top-0 right-0 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                         data-carousel-next>
             <span
-                class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                 <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor"
                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
                                                                                   stroke-linejoin="round"
@@ -273,45 +316,6 @@
             </span>
                 </button>
             </div>
-            <div class="font-bold mt-5 mb-5" style="font-size: 28px">Изменить статус заявки</div>
-            <label for="countries" class="block mb-5 font-medium text-gray-900 dark:text-gray-400">
-                Текущий статус заявки:&nbsp
-                @switch($order->status)
-                    @case(0)
-                    <span class="p-2 rounded-full relative"
-                          style="background-color: yellow; font-weight: bold">В обработке</span>
-                    @break
-                    @case(1)
-                    <span class="p-2 rounded-full"
-                          style="background-color: green; font-weight: bold; color: white">Исполнен</span>
-                    @break
-                    @case(2)
-                    <span class="p-2 rounded-full"
-                          style="background-color: red; font-weight: bold; color: white">Отклонен</span>
-                    @break
-                @endswitch
-            </label>
-            <form action="{{route('status_edit',$order->id)}}" method="POST">
-                @csrf
-                <select id="countries" name="status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    @switch($order->status)
-                        @case(0)
-                        <option value="1">Исполнен</option>
-                        <option value="2">Отклонен</option>
-                        @break
-                        @case(1)
-                        <option value="0">В обработке</option>
-                        <option value="2">Отклонен</option>
-                        @break
-                        @case(2)
-                        <option value="0">В обработке</option>
-                        <option value="1">Исполнен</option>
-                        @break
-                    @endswitch
-                </select>
-                <button type="submit" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сохранить</button>
-            </form>
         </div>
     </div>
 </x-app-layout>

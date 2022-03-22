@@ -18,7 +18,7 @@
                                 <thead>
                                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                     <th class="py-3 px-6 text-left">ID</th>
-                                    <th class="py-3 px-6 text-left">Тип</th>
+                                    <th class="py-3 px-6 text-left">Ф.И.</th>
                                     <th class="py-3 px-6 text-left">Марка</th>
                                     <th class="py-3 px-6 text-left">Почта</th>
                                     <th class="py-3 px-6 text-left">Телефон</th>
@@ -37,7 +37,7 @@
                                         </td>
                                         <td class="py-3 px-6 text-left">
                                             <div class="flex items-center">
-                                                <span>{{$order->car_type}}</span>
+                                                <span>{{$order->last_name}}&nbsp;{{$order->first_name}}&nbsp;</span>
                                             </div>
                                         </td>
                                         <td class="py-3 px-6 text-left">
@@ -68,19 +68,19 @@
                                             @if($order->status === 0)
                                                 <span class="p-2 rounded-full text-xs relative"
                                                       style="background-color: yellow; font-weight: bold">
-                                                        В обработке
+                                                       ⌛
                                                     </span>
                                             @endif
                                             @if($order->status === 1)
                                                 <span class="p-2 rounded-full text-xs"
                                                       style="background-color: green; font-weight: bold; color: white">
-                                                    Исполнен
+                                                    ✔
                                                 </span>
                                             @endif
                                             @if($order->status === 2)
                                                 <span class="p-2 rounded-full text-xs"
                                                       style="background-color: red; font-weight: bold; color: white">
-                                                    Отклонен
+                                                    🚫
                                                 </span>
                                             @endif
                                         </td>
