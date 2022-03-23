@@ -74,19 +74,19 @@
                                             @if($order->status === 0)
                                                 <span class="p-2 rounded-full text-xs relative"
                                                       style="background-color: yellow; font-weight: bold">
-                                                       ⌛
+                                                       Обработка
                                                     </span>
                                             @endif
                                             @if($order->status === 1)
                                                 <span class="p-2 rounded-full text-xs"
                                                       style="background-color: green; font-weight: bold; color: white">
-                                                    ✔
+                                                    Исполнен
                                                 </span>
                                             @endif
                                             @if($order->status === 2)
                                                 <span class="p-2 rounded-full text-xs"
                                                       style="background-color: red; font-weight: bold; color: white">
-                                                    🚫
+                                                    Отказ
                                                 </span>
                                             @endif
                                         </td>
