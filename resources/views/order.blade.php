@@ -317,7 +317,7 @@
                         class="flex absolute top-0 left-0 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                         data-carousel-prev>
             <span
-                    class="inline-flex justify-center items-center w-10 h-10 rounded-full" style="color: #1a202c">
+                    class="inline-flex justify-center items-center w-10 h-10 rounded-full" style="color: #ffffff; background: #1C64F2">
                 <svg class="w-10 h-10" fill="none" stroke="currentColor"
                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
                                                                                   stroke-linejoin="round"
@@ -330,7 +330,7 @@
                         class="flex absolute top-0 right-0 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                         data-carousel-next>
             <span
-                    class="inline-flex justify-center items-center w-10 h-10 rounded-full">
+                    class="inline-flex justify-center items-center w-10 h-10 rounded-full" style="color: #ffffff; background: #1C64F2">
                 <svg class="ww-10 h-10" fill="none" stroke="currentColor"
                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
                                                                                   stroke-linejoin="round"
