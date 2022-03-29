@@ -11,34 +11,56 @@
             <!-- component -->
             <div class="overflow-x-auto">
                 <div
-                    class="min-w-screen min-h-screen bg-gray-100 flex justify-center bg-gray-100 font-sans overflow-hidden">
-                    <div class="w-full lg:w-5/6">
-                        <div class="bg-white shadow-md rounded my-6">
-                            <table class="min-w-max w-full table-auto">
-                                <thead>
-                                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                    <th class="py-3 px-6 text-left">ID</th>
-                                    <th class="py-3 px-6 text-left">Ф.И.</th>
-                                    <th class="py-3 px-6 text-left">Марка</th>
-                                    <th class="py-3 px-6 text-left">Почта</th>
-                                    <th class="py-3 px-6 text-left">Телефон</th>
-                                    <th class="py-3 px-6 text-left">Дата</th>
-                                    <th class="py-3 px-6 text-left">Статус</th>
-                                    <th class="py-3 px-6 text-left">Действия</th>
+                        class="min-w-screen min-h-screen bg-gray-100 flex justify-center bg-gray-100 font-sans overflow-hidden">
+                    <div class="w-full lg:w-12">
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        ФИО/ИМЯ ОРГ.
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        МАРКА
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        ПОЧТА
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        ТЕЛЕФОН
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        ДАТА
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        СТАТУС
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+
+                                    </th>
                                 </tr>
                                 </thead>
-                                <tbody class="text-gray-600 text-sm font-light">
+                                <tbody>
                                 @foreach($orders as $order)
-                                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <td class="py-3 px-6 text-left whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <span class="font-medium">{{$order->id}}</span>
                                             </div>
                                         </td>
                                         <td class="py-3 px-6 text-left">
+
                                             <div class="flex items-center">
-                                                <span>{{$order->last_name}}&nbsp;{{$order->first_name}}&nbsp;</span>
+                                                @if($order->type_owner === 1)
+                                                    <span>{{$order->last_name}}&nbsp;{{$order->first_name}}&nbsp;</span>
+                                                @else
+                                                    <span>{{$order->org_name}}&nbsp;</span>
+                                                @endif
                                             </div>
+
                                         </td>
                                         <td class="py-3 px-6 text-left">
                                             <div class="flex items-center">
@@ -100,15 +122,15 @@
                                                         </svg>
                                                     </button>
                                                 </a>
-{{--                                                <div--}}
-{{--                                                    class="w-5 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">--}}
-{{--                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"--}}
-{{--                                                         viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                                        <path stroke-linecap="round" stroke-linejoin="round"--}}
-{{--                                                              stroke-width="2"--}}
-{{--                                                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>--}}
-{{--                                                    </svg>--}}
-{{--                                                </div>--}}
+                                                {{--                                                <div--}}
+                                                {{--                                                    class="w-5 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">--}}
+                                                {{--                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"--}}
+                                                {{--                                                         viewBox="0 0 24 24" stroke="currentColor">--}}
+                                                {{--                                                        <path stroke-linecap="round" stroke-linejoin="round"--}}
+                                                {{--                                                              stroke-width="2"--}}
+                                                {{--                                                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>--}}
+                                                {{--                                                    </svg>--}}
+                                                {{--                                                </div>--}}
                                             </div>
                                         </td>
                                     </tr>
