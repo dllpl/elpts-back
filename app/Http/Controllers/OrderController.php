@@ -43,9 +43,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        header('Access-Control-Allow-Origin', '*');
-        header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-        header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//        header('Access-Control-Allow-Origin', '*');
+//        header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+//        header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
         $request->validate([
             'type_owner'=>'required'
@@ -156,6 +156,7 @@ class OrderController extends Controller
              ]);
         } else if ($request->type_owner == '2'){
             $request->validate([
+                'type_owner'=>'required',
                 'org_name'=>'required',
                 'inn'=>'required',
                 'kpp'=>'required',
@@ -203,6 +204,8 @@ class OrderController extends Controller
             $vin_glass = $request->vin_glass->store('uploads','public');
 
 
+
+
             $order = Order::create([
                 'type_owner'=>$request->type_owner,
                 'org_name'=>$request->org_name,
@@ -242,6 +245,7 @@ class OrderController extends Controller
                 'vin_door'=>$vin_door,
                 'vin_glass'=>$vin_glass,
             ]);
+
 
             return response()->json([
                 'status'=>'success',
