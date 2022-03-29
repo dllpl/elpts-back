@@ -225,6 +225,9 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
                         <div class="absolute z-50 left-3 top-3 bg-gray-500 rounded text-white font-bold p-2">Фото СТС
                             (лицевая)
+                            <a href="{{asset('/storage/'.$order->image->sts_front)}}" download="" class="ml-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Скачать</button>
+                            </a>
                         </div>
                         <img src="{{asset('/storage/'.$order->image->sts_front)}}"
                              class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
@@ -234,6 +237,9 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item="">
                         <div class="absolute z-50 left-3 top-3 bg-gray-500 rounded text-white font-bold p-2">Фото СТС
                             (обратная)
+                            <a href="{{asset('/storage/'.$order->image->sts_back)}}" download="" class="ml-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Скачать</button>
+                            </a>
                         </div>
                         <img src="{{asset('/storage/'.$order->image->sts_back)}}"
                              class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
@@ -243,6 +249,9 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item="">
                         <div class="absolute z-50 left-3 top-3 bg-gray-500 rounded text-white font-bold p-2">Фото ТС
                             (спереди)
+                            <a href="{{asset('/storage/'.$order->image->ts_front)}}" download="" class="ml-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Скачать</button>
+                            </a>
                         </div>
                         <img src="{{asset('/storage/'.$order->image->ts_front)}}"
                              class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
@@ -252,6 +261,9 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item="">
                         <div class="absolute z-50 left-3 top-3 bg-gray-500 rounded text-white font-bold p-2">Фото ТС
                             (сзади)
+                            <a href="{{asset('/storage/'.$order->image->ts_back)}}" download="" class="ml-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Скачать</button>
+                            </a>
                         </div>
                         <img src="{{asset('/storage/'.$order->image->ts_back)}}"
                              class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
@@ -261,6 +273,9 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item="">
                         <div class="absolute z-50 left-3 top-3 bg-gray-500 rounded text-white font-bold p-2">Фото ТС
                             (справа)
+                            <a href="{{asset('/storage/'.$order->image->ts_right)}}" download="" class="ml-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Скачать</button>
+                            </a>
                         </div>
                         <img src="{{asset('/storage/'.$order->image->ts_right)}}"
                              class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
@@ -268,6 +283,9 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item="">
                         <div class="absolute z-50 left-3 top-3 bg-gray-500 rounded text-white font-bold p-2">Фото ТС
                             (слева)
+                            <a href="{{asset('/storage/'.$order->image->ts_left)}}" download="" class="ml-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Скачать</button>
+                            </a>
                         </div>
                         <img src="{{asset('/storage/'.$order->image->ts_left)}}"
                              class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
@@ -275,6 +293,9 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item="">
                         <div class="absolute z-50 left-3 top-3 bg-gray-500 rounded text-white font-bold p-2">Фото
                             VIN-таблички у водительской двери
+                            <a href="{{asset('/storage/'.$order->image->vin_door)}}" download="" class="ml-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Скачать</button>
+                            </a>
                         </div>
                         <img src="{{asset('/storage/'.$order->image->vin_door)}}"
                              class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
@@ -282,6 +303,9 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item="">
                         <div class="absolute z-50 left-3 top-3 bg-gray-500 rounded text-white font-bold p-2">Фото
                             VIN-таблички на лобовом стекле
+                            <a href="{{asset('/storage/'.$order->image->vin_glass)}}" download="" class="ml-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Скачать</button>
+                            </a>
                         </div>
                         <img src="{{asset('/storage/'.$order->image->vin_glass)}}"
                              class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
