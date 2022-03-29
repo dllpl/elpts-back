@@ -204,6 +204,7 @@ class OrderController extends Controller
 
 
             $order = Order::create([
+                'type_owner'=>$request->type_owner,
                 'org_name'=>$request->org_name,
                 'inn'=>$request->inn,
                 'kpp'=>$request->kpp,
@@ -260,7 +261,7 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
 
-        if ($order->type_owner === 1) {
+        if ($order->type_owner == '1') {
             $order->type_owner = 'Физическое лицо';
         } else {
             $order->type_owner = 'Юридическое лицо';
