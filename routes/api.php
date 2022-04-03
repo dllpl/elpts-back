@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +17,9 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::post('/order/create', [OrderController::class, 'store']);
+
+Route::any('/pay', [PaymentController::class, 'payCreate'])->name('pay.create');
+Route::any('/pay/callback', [PaymentController::class, 'payCallback'])->name('pay.callback');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', function (Request $request) {return $request->user();});
