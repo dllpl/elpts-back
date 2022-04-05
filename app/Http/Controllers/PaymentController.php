@@ -51,6 +51,6 @@ class PaymentController extends Controller
 
     public function payCallback(Request $request)
     {
-        return redirect('');
+        return redirect('https://reg.gospts.ru/#/finish');
     }
 }
