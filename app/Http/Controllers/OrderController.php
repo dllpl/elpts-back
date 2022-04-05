@@ -6,9 +6,11 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Order;
 use App\Models\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -150,6 +152,8 @@ class OrderController extends Controller
                 'vin_glass' => $vin_glass,
             ]);
 
+            $this->sendSms($order->id, $request->phone);
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Данные физ. лица успешно сохранены',
@@ -245,6 +249,7 @@ class OrderController extends Controller
                 'vin_glass' => $vin_glass,
             ]);
 
+            $this->sendSms($order->id, $request->phone);
 
             return response()->json([
                 'status' => 'success',
@@ -278,15 +283,60 @@ class OrderController extends Controller
         return view('order', ['order' => $order]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function sendSms($order_id, $phone)
     {
-        //
+        //telegram
+        $url = 'https://api.telegram.org/bot';
+        $t_token = '5129667492:AAEXJgEpqZIko4nAEk_kziAX9xlB98l8iKg';
+        $chatid = '-1001734882908';
+        $data = [
+            'chat_id' => $chatid,
+            'text' => 'Новая заявка на ПТС #' . $order_id . ', телефон клиента ' . $phone,
+        ];
+        file_get_contents($url . $t_token . "/sendMessage?" . http_build_query($data));
+
+        //WhatsApp
+        $messagewa = 'Спасибо! Ваша заявка на регистрацию ЭПТС принята. Номер заявки #' . $order_id;
+        $w_token = 'YbUz0Z3mQnwMDd055a356297b3008a5cde8d204b079e6';
+        $array = [
+            [
+                'chatId' => $this->phonewa_format($phone),
+                'message' => $messagewa,
+            ]
+        ];
+
+        $headers = ['Content-type' => 'application/json; charset=utf-8'];
+
+        $client = new Client();
+        $response = $client->request('POST', 'https://app.api-messenger.com/sendmessage?token=' . $w_token,
+            ['headers' => $headers, 'json' => json_encode($array)]);
+        $data = $response->getBody();
+        Log::Info($data);
+    }
+
+    public function phonewa_format($phone)
+    {
+        $phone = trim($phone);
+        $res = preg_replace(
+            array(
+                '/[\+]?([7|8])[-|\s]?\([-|\s]?(\d{3})[-|\s]?\)[-|\s]?(\d{3})[-|\s]?(\d{2})[-|\s]?(\d{2})/',
+                '/[\+]?([7|8])[-|\s]?(\d{3})[-|\s]?(\d{3})[-|\s]?(\d{2})[-|\s]?(\d{2})/',
+                '/[\+]?([7|8])[-|\s]?\([-|\s]?(\d{4})[-|\s]?\)[-|\s]?(\d{2})[-|\s]?(\d{2})[-|\s]?(\d{2})/',
+                '/[\+]?([7|8])[-|\s]?(\d{4})[-|\s]?(\d{2})[-|\s]?(\d{2})[-|\s]?(\d{2})/',
+                '/[\+]?([7|8])[-|\s]?\([-|\s]?(\d{4})[-|\s]?\)[-|\s]?(\d{3})[-|\s]?(\d{3})/',
+                '/[\+]?([7|8])[-|\s]?(\d{4})[-|\s]?(\d{3})[-|\s]?(\d{3})/',
+            ),
+            array(
+                '7$2$3$4$5',
+                '7$2$3$4$5',
+                '7$2$3$4$5',
+                '7$2$3$4$5',
+                '7$2$3$4',
+                '7$2$3$4',
+            ),
+            $phone
+        );
+        return $res;
     }
 
     /**
