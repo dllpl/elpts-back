@@ -17,16 +17,20 @@ class CreateImages extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id');
-
+            $table->string('pass_photo')->default(null);
+            $table->string('snils_photo')->default(null);
             $table->string('sts_front');
             $table->string('sts_back');
+            $table->string('pts_front');
+            $table->string('pts_back');
             $table->string('ts_front');
             $table->string('ts_back');
             $table->string('ts_right');
             $table->string('ts_left');
             $table->string('vin_door');
             $table->string('vin_glass');
-
+            $table->string('tire');
+            $table->string('tire_table');
             $table->timestamps();
         });
     }

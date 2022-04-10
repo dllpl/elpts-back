@@ -65,8 +65,9 @@ class OrderController extends Controller
 
                 'pass_serial' => 'required',
                 'pass_number' => 'required',
+                'pass_photo'=>'required',
+                'snils_photo'=>'required',
 
-                'inn' => 'required',
                 'snils' => 'required',
 
                 'phone' => 'required',
@@ -86,26 +87,36 @@ class OrderController extends Controller
 
                 'sts_front' => 'required|file|image',
                 'sts_back' => 'required|file|image',
+                'pts_front'=>'required|file|image',
+                'pts_back'=>'required|file|image',
                 'ts_front' => 'required|file|image',
                 'ts_back' => 'required|file|image',
                 'ts_right' => 'required|file|image',
                 'ts_left' => 'required|file|image',
                 'vin_door' => 'required|file|image',
                 'vin_glass' => 'required|file|image',
+                'tire'=> 'required|file|image',
+                'tire_table'=> 'required|file|image',
 
                 'price' => 'required',
                 'pay_method' => 'required',
                 'pay_success' => 'required',
             ]);
 
+            $pass_photo = $request->pass_photo->store('uploads', 'public_html');
+            $snils_photo = $request->snils_photo->store('uploads', 'public_html');
             $sts_front = $request->sts_front->store('uploads', 'public_html');
             $sts_back = $request->sts_back->store('uploads', 'public_html');
+            $pts_front = $request->pts_front->store('uploads', 'public_html');
+            $pts_back = $request->pts_back->store('uploads', 'public_html');
             $ts_front = $request->ts_front->store('uploads', 'public_html');
             $ts_back = $request->ts_back->store('uploads', 'public_html');
             $ts_right = $request->ts_right->store('uploads', 'public_html');
             $ts_left = $request->ts_left->store('uploads', 'public_html');
             $vin_door = $request->vin_door->store('uploads', 'public_html');
             $vin_glass = $request->vin_glass->store('uploads', 'public_html');
+            $tire = $request->tire->store('uploads', 'public_html');
+            $tire_table = $request->tire_table->store('uploads', 'public_html');
 
             $order = Order::create([
                 'last_name' => $request->last_name,
@@ -142,14 +153,20 @@ class OrderController extends Controller
             ]);
 
             $order->image()->create([
+                'pass_photo'=>$pass_photo,
+                'snils_photo'=>$snils_photo,
                 'sts_front' => $sts_front,
                 'sts_back' => $sts_back,
+                'pts_front'=>$pts_front,
+                'pts_back'=>$pts_back,
                 'ts_front' => $ts_front,
                 'ts_back' => $ts_back,
                 'ts_right' => $ts_right,
                 'ts_left' => $ts_left,
                 'vin_door' => $vin_door,
                 'vin_glass' => $vin_glass,
+                'tire'=>$tire,
+                'tire_table'=>$tire_table
             ]);
 
             $this->sendSms($order->id, $request->phone);
@@ -187,26 +204,34 @@ class OrderController extends Controller
 
                 'sts_front' => 'required|file|image',
                 'sts_back' => 'required|file|image',
+                'pts_front'=>'required|file|image',
+                'pts_back'=>'required|file|image',
                 'ts_front' => 'required|file|image',
                 'ts_back' => 'required|file|image',
                 'ts_right' => 'required|file|image',
                 'ts_left' => 'required|file|image',
                 'vin_door' => 'required|file|image',
                 'vin_glass' => 'required|file|image',
+                'tire'=> 'required|file|image',
+                'tire_table'=> 'required|file|image',
 
                 'price' => 'required',
                 'pay_method' => 'required',
                 'pay_success' => 'required',
             ]);
 
-            $sts_front = $request->sts_front->store('uploads', 'public');
-            $sts_back = $request->sts_back->store('uploads', 'public');
-            $ts_front = $request->ts_front->store('uploads', 'public');
-            $ts_back = $request->ts_back->store('uploads', 'public');
-            $ts_right = $request->ts_right->store('uploads', 'public');
-            $ts_left = $request->ts_left->store('uploads', 'public');
-            $vin_door = $request->vin_door->store('uploads', 'public');
-            $vin_glass = $request->vin_glass->store('uploads', 'public');
+            $sts_front = $request->sts_front->store('uploads', 'public_html');
+            $sts_back = $request->sts_back->store('uploads', 'public_html');
+            $pts_front = $request->pts_front->store('uploads', 'public_html');
+            $pts_back = $request->pts_back->store('uploads', 'public_html');
+            $ts_front = $request->ts_front->store('uploads', 'public_html');
+            $ts_back = $request->ts_back->store('uploads', 'public_html');
+            $ts_right = $request->ts_right->store('uploads', 'public_html');
+            $ts_left = $request->ts_left->store('uploads', 'public_html');
+            $vin_door = $request->vin_door->store('uploads', 'public_html');
+            $vin_glass = $request->vin_glass->store('uploads', 'public_html');
+            $tire = $request->tire->store('uploads', 'public_html');
+            $tire_table = $request->tire_table->store('uploads', 'public_html');
 
 
             $order = Order::create([
@@ -241,12 +266,16 @@ class OrderController extends Controller
             $order->image()->create([
                 'sts_front' => $sts_front,
                 'sts_back' => $sts_back,
+                'pts_front'=>$pts_front,
+                'pts_back'=>$pts_back,
                 'ts_front' => $ts_front,
                 'ts_back' => $ts_back,
                 'ts_right' => $ts_right,
                 'ts_left' => $ts_left,
                 'vin_door' => $vin_door,
                 'vin_glass' => $vin_glass,
+                'tire'=>$tire,
+                'tire_table'=>$tire_table
             ]);
 
             $this->sendSms($order->id, $request->phone);
@@ -305,12 +334,17 @@ class OrderController extends Controller
             ]
         ];
 
-        $headers = ['Content-type' => 'application/json; charset=utf-8'];
-
-        $client = new Client();
-        $response = $client->request('POST', 'https://app.api-messenger.com/sendmessage?token=' . $w_token,
-            ['headers' => $headers, 'json' => json_encode($array)]);
-        $data = $response->getBody();
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://app.api-messenger.com/sendmessage?token=' . $w_token);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($array));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json; charset=utf-8'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($result, true);
         Log::Info($data);
     }
 

@@ -19,7 +19,8 @@
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.5",
         "yoomoney/yookassa-sdk-php": "2.3.0",
-        "ext-json": "*"
+        "ext-json": "*",
+      "ext-curl": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

@@ -131,16 +131,17 @@
                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <div class="mb-4">
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">ИНН</label>
-                        <input value="{{$order->inn}}" disabled
-                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </div>
-                    <div class="mb-4">
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">СНИЛС</label>
                         <input value="{{$order->snils}}" disabled
                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                 </div>
+                <a href="{{asset('/storage/'.$order->image->pass_photo)}}" download="">
+                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Фото паспорта (Скачать)</button>
+                </a>
+                <a href="{{asset('/storage/'.$order->image->snils_photo)}}" download="" class="ml-2">
+                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Фото СНИЛС (Скачать)</button>
+                </a>
             @endif
             <div class="font-bold mt-5 mb-5">Сведения о транспортном средстве</div>
             <div class="mb-6">
@@ -215,7 +216,53 @@
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
-            <div class="font-bold mt-5 mb-5">Изображения</div>
+            <div class="font-bold mt-5 mb-5">Скачать все файлы</div>
+            @if($order->type_owner === 'Физическое лицо')
+            <a href="{{asset('/storage/'.$order->image->pass_photo)}}" download="">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Фото паспорта</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->snils_photo)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Фото СНИЛС</button>
+            </a>
+            @endif
+            <a href="{{asset('/storage/'.$order->image->sts_front)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">СТС главная</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->sts_back)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">СТС обратная</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->pts_front)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ПТС главная</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->pts_back)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ПТС обратная</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->ts_front)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ТС (1/4)</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->ts_back)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ТС (2/4)</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->ts_right)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ТС (3/4)</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->ts_left)}}" download="" class="ml-2">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ТС (4/4)</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->vin_door)}}" download="">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-2">VIN на двери</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->vin_glass)}}" download="">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-2">VIN на cтекле</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->tire)}}" download="">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-2">Фото размерности шины</button>
+            </a>
+            <a href="{{asset('/storage/'.$order->image->tire_table)}}" download="">
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-2">Фото таблички размерности шин</button>
+            </a>
+
+            <div class="font-bold mt-5 mb-5">Предпросмотр файлов</div>
             <div id="default-carousel" data-carousel="static" class="relative">
 
                 <!-- Carousel wrapper -->
