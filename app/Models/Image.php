@@ -23,7 +23,6 @@ class Image extends Model
         'vin_door',
         'vin_glass',
         'tire',
-        'tire_table',
     ];
     public function order()
     {

@@ -42,6 +42,7 @@ class Order extends Model
         'drive_ts',
         'engine_model',
         'engine_number',
+        'odometr',
         'engine_power',
         'engine_volume',
         'fuel',

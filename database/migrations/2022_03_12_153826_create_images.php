@@ -30,7 +30,6 @@ class CreateImages extends Migration
             $table->string('vin_door');
             $table->string('vin_glass');
             $table->string('tire');
-            $table->string('tire_table');
             $table->timestamps();
         });
     }

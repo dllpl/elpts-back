@@ -47,6 +47,7 @@ class CreateOrdersTable extends Migration
             $table->string('drive_ts');
             $table->string('engine_model');
             $table->string('engine_number');
+            $table->string('odometr');
             $table->string('engine_power');
             $table->string('engine_volume');
             $table->string('fuel');

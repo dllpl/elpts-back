@@ -65,8 +65,8 @@ class OrderController extends Controller
 
                 'pass_serial' => 'required',
                 'pass_number' => 'required',
-                'pass_photo'=>'required',
-                'snils_photo'=>'required',
+                'pass_photo' => 'required',
+                'snils_photo' => 'required',
 
                 'snils' => 'required',
 
@@ -81,22 +81,22 @@ class OrderController extends Controller
                 'drive_ts' => 'required',
                 'engine_model' => 'required',
                 'engine_number' => 'required',
+                'odometr' => 'required',
                 'engine_power' => 'required',
                 'engine_volume' => 'required',
                 'fuel' => 'required',
 
                 'sts_front' => 'required|file|image',
                 'sts_back' => 'required|file|image',
-                'pts_front'=>'required|file|image',
-                'pts_back'=>'required|file|image',
+                'pts_front' => 'required|file|image',
+                'pts_back' => 'required|file|image',
                 'ts_front' => 'required|file|image',
                 'ts_back' => 'required|file|image',
                 'ts_right' => 'required|file|image',
                 'ts_left' => 'required|file|image',
                 'vin_door' => 'required|file|image',
                 'vin_glass' => 'required|file|image',
-                'tire'=> 'required|file|image',
-                'tire_table'=> 'required|file|image',
+                'tire' => 'required|file|image',
 
                 'price' => 'required',
                 'pay_method' => 'required',
@@ -116,7 +116,6 @@ class OrderController extends Controller
             $vin_door = $request->vin_door->store('uploads', 'public_html');
             $vin_glass = $request->vin_glass->store('uploads', 'public_html');
             $tire = $request->tire->store('uploads', 'public_html');
-            $tire_table = $request->tire_table->store('uploads', 'public_html');
 
             $order = Order::create([
                 'last_name' => $request->last_name,
@@ -144,6 +143,7 @@ class OrderController extends Controller
                 'drive_ts' => $request->drive_ts,
                 'engine_model' => $request->engine_model,
                 'engine_number' => $request->engine_number,
+                'odometr' => $request->odometr,
                 'engine_power' => $request->engine_power,
                 'engine_volume' => $request->engine_volume,
                 'fuel' => $request->fuel,
@@ -153,20 +153,19 @@ class OrderController extends Controller
             ]);
 
             $order->image()->create([
-                'pass_photo'=>$pass_photo,
-                'snils_photo'=>$snils_photo,
+                'pass_photo' => $pass_photo,
+                'snils_photo' => $snils_photo,
                 'sts_front' => $sts_front,
                 'sts_back' => $sts_back,
-                'pts_front'=>$pts_front,
-                'pts_back'=>$pts_back,
+                'pts_front' => $pts_front,
+                'pts_back' => $pts_back,
                 'ts_front' => $ts_front,
                 'ts_back' => $ts_back,
                 'ts_right' => $ts_right,
                 'ts_left' => $ts_left,
                 'vin_door' => $vin_door,
                 'vin_glass' => $vin_glass,
-                'tire'=>$tire,
-                'tire_table'=>$tire_table
+                'tire' => $tire,
             ]);
 
             $this->sendSms($order->id, $request->phone);
@@ -198,22 +197,22 @@ class OrderController extends Controller
                 'drive_ts' => 'required',
                 'engine_model' => 'required',
                 'engine_number' => 'required',
+                'odometr' => 'required',
                 'engine_power' => 'required',
                 'engine_volume' => 'required',
                 'fuel' => 'required',
 
                 'sts_front' => 'required|file|image',
                 'sts_back' => 'required|file|image',
-                'pts_front'=>'required|file|image',
-                'pts_back'=>'required|file|image',
+                'pts_front' => 'required|file|image',
+                'pts_back' => 'required|file|image',
                 'ts_front' => 'required|file|image',
                 'ts_back' => 'required|file|image',
                 'ts_right' => 'required|file|image',
                 'ts_left' => 'required|file|image',
                 'vin_door' => 'required|file|image',
                 'vin_glass' => 'required|file|image',
-                'tire'=> 'required|file|image',
-                'tire_table'=> 'required|file|image',
+                'tire' => 'required|file|image',
 
                 'price' => 'required',
                 'pay_method' => 'required',
@@ -231,7 +230,6 @@ class OrderController extends Controller
             $vin_door = $request->vin_door->store('uploads', 'public_html');
             $vin_glass = $request->vin_glass->store('uploads', 'public_html');
             $tire = $request->tire->store('uploads', 'public_html');
-            $tire_table = $request->tire_table->store('uploads', 'public_html');
 
 
             $order = Order::create([
@@ -255,6 +253,7 @@ class OrderController extends Controller
                 'drive_ts' => $request->drive_ts,
                 'engine_model' => $request->engine_model,
                 'engine_number' => $request->engine_number,
+                'odometr' => $request->odometr,
                 'engine_power' => $request->engine_power,
                 'engine_volume' => $request->engine_volume,
                 'fuel' => $request->fuel,
@@ -266,16 +265,15 @@ class OrderController extends Controller
             $order->image()->create([
                 'sts_front' => $sts_front,
                 'sts_back' => $sts_back,
-                'pts_front'=>$pts_front,
-                'pts_back'=>$pts_back,
+                'pts_front' => $pts_front,
+                'pts_back' => $pts_back,
                 'ts_front' => $ts_front,
                 'ts_back' => $ts_back,
                 'ts_right' => $ts_right,
                 'ts_left' => $ts_left,
                 'vin_door' => $vin_door,
                 'vin_glass' => $vin_glass,
-                'tire'=>$tire,
-                'tire_table'=>$tire_table
+                'tire' => $tire,
             ]);
 
             $this->sendSms($order->id, $request->phone);
@@ -397,10 +395,12 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        Image::where('order_id', $id)->delete();
+        Order::where('id', $id)->delete();
+        return redirect('dashboard');
     }
 }
